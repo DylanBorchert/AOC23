@@ -1,3 +1,4 @@
+import math
 from template import Template
 
 
@@ -38,13 +39,42 @@ class day0(Template):
             "...$.*....",
             ".664.598.."
         ]
-        self.set_data(test_data)
+        # self.set_data(test_data)
 
     def part1(self):
-        return [group_numbers(list(x)) for x in self.get_data()]
+        data = [group_numbers(x) for x in self.get_data()]
+        sum = 0
+        for row, line in enumerate(data):
+            for col, char in enumerate(line):
+                if not char.isdigit() and char != ".":
+                    saved_number = 0
+                    for i in range(max(0, row - 1), min(row + 2, len(data))):
+                        for j in range(max(0, col - 1), min(col + 2, len(data[i]))):
+                            if not data[i][j].isdigit():
+                                saved_number = 0
+                            if data[i][j].isdigit() and int(data[i][j]) != saved_number:
+                                saved_number = int(data[i][j])
+                                sum += int(data[i][j])
+        return sum
 
     def part2(self):
-        pass
+        data = [group_numbers(x) for x in self.get_data()]
+        sum = 0
+        for row, line in enumerate(data):
+            for col, char in enumerate(line):
+                if char == "*":
+                    saved_number = 0
+                    all_nums = []
+                    for i in range(max(0, row - 1), min(row + 2, len(data))):
+                        for j in range(max(0, col - 1), min(col + 2, len(data[i]))):
+                            if not data[i][j].isdigit():
+                                saved_number = 0
+                            if data[i][j].isdigit() and int(data[i][j]) != saved_number:
+                                saved_number = int(data[i][j])
+                                all_nums.append(int(data[i][j]))
+                    if len(all_nums) > 1:
+                        sum += math.prod(all_nums)
+        return sum
 
 
 print(day0())
