@@ -4,6 +4,7 @@ from template import Template
 class day0(Template):
     def __init__(self):
         self.day = 0
+        # super().__init__(self.day, file_location="test.txt")
         super().__init__(self.day)
 
         self.set_data(self.get_data().split("\n")[:-1])
