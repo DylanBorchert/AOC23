@@ -25,9 +25,11 @@ class day0(Template):
                     # convert from source range to target range
                     # if seed fits in source range, add to seed map
                     if x in range(b, b + c):
+                        # seed location minus source range start plus target range start
                         new.append(x - b + a)
                         break
                 else:
+                    # if seed does not fit in source range, add to seed map
                     new.append(x)
             seeds = new  # new seed map to g through rest of map
         return min(seeds)
@@ -44,20 +46,25 @@ class day0(Template):
             for line in block.splitlines()[1:]:
                 ranges.append(list(map(int, line.split())))
             new = []
+            # keep going through seeds until there are no more seeds
             while seeds:
                 s, e = seeds.pop()
                 for a, b, c in ranges:
-                    overlap_start = max(s, b)
-                    overlap_end = min(e, b + c)
-                    if overlap_start < overlap_end:
+                    #  seed     |---Seed range---|
+                    #       |---s----------------e------|
+                    #       b---------------------------b+c
+                    overlap_start = max(s, b)  # find the start overlap
+                    overlap_end = min(e, b + c)  # find the end overlap
+                    if overlap_start < overlap_end:  # if there is an overlap
                         new.append(
-                            (overlap_start - b + a, overlap_end - b + a))
-                        if overlap_start > s:
+                            (overlap_start - b + a, overlap_end - b + a))  # add the new seed
+                        if overlap_start > s:  # if there is a seed before the overlap
                             seeds.append((s, overlap_start))
-                        if overlap_end < e:
+                        if overlap_end < e:  # if there is a seed after the overlap
                             seeds.append((overlap_end, e))
                         break
                 else:
+                    # if there is no overlap, add the seed back
                     new.append((s, e))
             seeds = new
         return min(seeds)[0]
