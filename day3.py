@@ -27,19 +27,6 @@ class day0(Template):
         super().__init__(self.day)
 
         self.set_data(self.get_data().split("\n")[:-1])
-        test_data = [
-            "467..114..",
-            "...*......",
-            "..35..633.",
-            "......#...",
-            "617*......",
-            ".....+.58.",
-            "..592.....",
-            "......755.",
-            "...$.*....",
-            ".664.598.."
-        ]
-        # self.set_data(test_data)
 
     def part1(self):
         data = [group_numbers(x) for x in self.get_data()]
@@ -72,7 +59,7 @@ class day0(Template):
                             if data[i][j].isdigit() and int(data[i][j]) != saved_number:
                                 saved_number = int(data[i][j])
                                 all_nums.append(int(data[i][j]))
-                    if len(all_nums) > 1:
+                    if len(all_nums) == 2:
                         sum += math.prod(all_nums)
         return sum
 
