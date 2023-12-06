@@ -13,26 +13,24 @@ class day0(Template):
         self.set_data(self.get_data().split("\n")[:-1])
 
     def part1(self):
-        times = [int(x) for x in self.get_data()[0].split(":")[1].split()]
-        distances = [int(x) for x in self.get_data()[1].split(":")[1].split()]
+        times, distances = [list(map(int, x.split(":")[1].split()))
+                            for x in self.get_data()]
         product = 1
-        for i, time in enumerate(times):
+        for time, distance in zip(times, distances):
             ways = 0
             for hold_time in range(time):
-                total_distance = hold_time * (time - hold_time)
-                if total_distance > distances[i]:
+                if hold_time * (time - hold_time) > distance:
                     ways += 1
             product *= ways
         return product
 
     def part2(self):
-        time = int(self.get_data()[0].split(":")[1].replace(" ", ""))
-        distance = int(self.get_data()[1].split(":")[1].replace(" ", ""))
+        time, distance = [int(x.split(":")[1].replace(" ", ""))
+                          for x in self.get_data()]
         product = 1
         ways = 0
         for hold_time in range(time):
-            total_distance = hold_time * (time - hold_time)
-            if total_distance > distance:
+            if hold_time * (time - hold_time) > distance:
                 ways += 1
         product *= ways
         return product
