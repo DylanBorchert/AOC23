@@ -4,10 +4,11 @@ from template import Template
 class day0(Template):
     def __init__(self):
         self.day = 0
-        # super().__init__(self.day, file_location="test.txt")
-        super().__init__(self.day)
+        super().__init__(self.day, file_location="test.txt")
+        self.set_data(self.get_data().split("\n"))
 
-        self.set_data(self.get_data().split("\n")[:-1])
+        # super().__init__(self.day)
+        # self.set_data(self.get_data().split("\n")[:-1])
 
     def part1(self):
         return self.get_data()
