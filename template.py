@@ -20,6 +20,7 @@ if not cookie:
 # ensures the site gives us the correct data, and not just a lame "you're not logged in" reponse
 requests.utils.add_dict_to_cookiejar(session.cookies, {"session": cookie})
 
+
 @cache
 def get_input_data(day: int) -> str:
     """Takes a day and returns the input data for that day
@@ -35,13 +36,15 @@ def get_input_data(day: int) -> str:
 
 
 class Template:
-    def __init__(self, day: int, file_location: str = None):
+    def __init__(self, day: int, useFile: bool = False, file_location: str = None):
         """Initializes the template class"""
         self.day = day
         self.link = f"https://adventofcode.com/2023/day/{day}"
-        if not file_location:
+        if not useFile:
             self.__data = get_input_data(day)
         else:
+            if not file_location:
+                file_location = f"test.txt"
             f = open(file_location, "r")
             data = f.read()
             f.close()

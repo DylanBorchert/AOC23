@@ -4,12 +4,9 @@ from template import Template
 class day0(Template):
     def __init__(self):
         self.day = 9
-        super().__init__(self.day)
+        super().__init__(self.day, useFile=False)
         self.set_data([list(map(int, x.split()))
                       for x in self.get_data().strip().split("\n")])
-
-        # super().__init__(self.day)
-        # self.set_data(self.get_data().split("\n")[:-1])
 
     def part1(self):
         total = 0
