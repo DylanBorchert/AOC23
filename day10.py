@@ -1,4 +1,5 @@
 from template import Template
+from collections import deque
 
 
 class day0(Template):
@@ -8,7 +9,39 @@ class day0(Template):
         self.set_data(self.get_data().strip().split("\n"))
 
     def part1(self):
-        return self.get_data()
+        grid = self.get_data()
+        for r, row in enumerate(grid):
+            for c, col in enumerate(row):
+                if col == "S":
+                    sr, sc = r, c
+                    break
+            else:
+                continue
+            break
+        seen = {(sr, sc)}
+        q = deque([(sr, sc)])
+
+        while q:
+            r, c = q.popleft()
+            ch = grid[r][c]
+            # up and can go up and not seen
+            if r > 0 and ch in "S|JL" and grid[r-1][c] in "|7F" and (r-1, c) not in seen:
+                seen.add((r-1, c))
+                q.append((r-1, c))
+            # down and can go down and not seen
+            if r < len(grid)-1 and ch in "S|7F" and grid[r+1][c] in "|JL" and (r+1, c) not in seen:
+                seen.add((r+1, c))
+                q.append((r+1, c))
+            # left and can go left and not seen
+            if c > 0 and ch in "S-J7" and grid[r][c-1] in "-LF" and (r, c-1) not in seen:
+                seen.add((r, c-1))
+                q.append((r, c-1))
+            # right and can go right and not seen
+            if c < len(grid[r]) - 1 and ch in "S-LF" and grid[r][c+1] in "-J7" and (r, c+1) not in seen:
+                seen.add((r, c+1))
+                q.append((r, c+1))
+
+        return len(seen)//2
 
     def part2(self):
         pass
