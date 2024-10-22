@@ -15,4 +15,4 @@ class day0(Template):
         return 0
 
 
-print(day0().submit())
+print(day0())

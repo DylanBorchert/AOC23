@@ -58,7 +58,7 @@ def submit_data(self) -> None:
             submit_answer(data, self.year, self.day)
         case 1:
             print(
-                f"{bcolors.OKGREEN}Answer for Part 1 already submitted{bcolors.ENDC}\n")
+                f"{bcolors.OKGREEN}⭐️ Answer for Part 1 Correct!{bcolors.ENDC}\n")
 
             input(
                 f"{bcolors.BOLD}Part 2:{bcolors.ENDC} {bcolors.WARNING}Press enter to submit answer: {bcolors.OKGREEN}{day2Answer}{bcolors.ENDC} {bcolors.ENDC}")
@@ -68,33 +68,34 @@ def submit_data(self) -> None:
             }
             submit_answer(data, self.year, self.day)
         case 2:
-            print(f"{bcolors.OKGREEN}Both Parts Answered Already{bcolors.ENDC}")
+            print(f"{bcolors.OKGREEN}⭐️ Both Parts Correct!{bcolors.ENDC}")
     return ''
 
 
 def handle_submit_response(response):
+    print()
     if 'You gave an answer too recently' in response.text:
         # You will get this if you submitted a wrong answer less than 60s ago.
         print(
-            f'{bcolors.FAIL}TOO MANY REQUESTS{bcolors.ENDC}')
+            f'{bcolors.BOLD}-= -=-{bcolors.ENDC}{bcolors.FAIL} TOO MANY REQUESTS {bcolors.ENDC}{bcolors.BOLD}-= -=-{bcolors.ENDC}')
     elif 'not the right answer' in response.text:
         if 'too low' in response.text:
             print(
-                f'{bcolors.FAIL}WRONG (TOO LOW){bcolors.ENDC}')
+                f'{bcolors.BOLD}-= -=-{bcolors.ENDC}{bcolors.FAIL} WRONG (TOO LOW) {bcolors.ENDC}{bcolors.BOLD}-= -=-{bcolors.ENDC}')
         elif 'too high' in response.text:
             print(
-                f'{bcolors.FAIL}WRONG (TOO HIGH){bcolors.ENDC}')
+                f'{bcolors.BOLD}-= -=-{bcolors.ENDC}{bcolors.FAIL} WRONG (TOO HIGH) {bcolors.ENDC}{bcolors.BOLD}-= -=-{bcolors.ENDC}')
         else:
             print(
-                f'{bcolors.FAIL}WRONG{bcolors.ENDC}')
+                f'{bcolors.BOLD}-= -=-{bcolors.ENDC}{bcolors.FAIL} WRONG {bcolors.ENDC}{bcolors.BOLD}-= -=-{bcolors.ENDC}')
     elif 'seem to be solving the right level.' in response.text:
         # You will get this if you submit on a level you already solved.
         # Usually happens when you forget to switch from `PART = 1` to `PART = 2`
         print(
-            f"{bcolors.WARNING}ALREADY SOLVED{bcolors.ENDC}")
+            f"{bcolors.BOLD}-= -=-{bcolors.ENDC}{bcolors.OKGREEN} ALREADY SOLVED {bcolors.ENDC}{bcolors.BOLD}-= -=-{bcolors.ENDC}")
     else:
         print(
-            f"{bcolors.FAIL}UNKNOWN!{bcolors.ENDC}")
+            f"{bcolors.BOLD}-= -=-{bcolors.ENDC}{bcolors.OKGREEN} CORRECT! {bcolors.ENDC}{bcolors.BOLD}-= -=-{bcolors.ENDC}")
 
 
 class Template:
