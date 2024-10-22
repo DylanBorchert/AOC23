@@ -58,7 +58,7 @@ def submit_data(self) -> None:
             submit_answer(data, self.year, self.day)
         case 1:
             print(
-                f"{bcolors.OKGREEN}Answer for Part 1 already submitted{bcolors.ENDC}\n")
+                f"{bcolors.OKGREEN}⭐️ Answer for Part 1 already submitted{bcolors.ENDC}\n")
 
             input(
                 f"{bcolors.BOLD}Part 2:{bcolors.ENDC} {bcolors.WARNING}Press enter to submit answer: {bcolors.OKGREEN}{day2Answer}{bcolors.ENDC} {bcolors.ENDC}")
@@ -68,7 +68,7 @@ def submit_data(self) -> None:
             }
             submit_answer(data, self.year, self.day)
         case 2:
-            print(f"{bcolors.OKGREEN}Both Parts Answered Already{bcolors.ENDC}")
+            print(f"{bcolors.OKGREEN}⭐️ Both Parts Answered Already{bcolors.ENDC}")
     return ''
 
 

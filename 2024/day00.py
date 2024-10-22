@@ -3,8 +3,8 @@ from template import Template
 
 class day0(Template):
     def __init__(self):
-        self.day = 1
-        self.year = 2023
+        self.day = 0
+        self.year = 2024
         super().__init__(self.day, self.year, useFile=True)
         self.set_data(self.get_data().strip().split("\n"))
 
