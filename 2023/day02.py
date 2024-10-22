@@ -4,7 +4,8 @@ from template import Template
 class day2(Template):
     def __init__(self):
         self.day = 2
-        super().__init__(self.day)
+        self.year = 2023
+        super().__init__(self.day, self.year, useFile=False)
 
         self.set_data(self.get_data().split("\n")[:-1])
 

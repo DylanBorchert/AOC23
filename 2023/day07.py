@@ -60,7 +60,8 @@ plays = []
 class day0(Template):
     def __init__(self):
         self.day = 7
-        super().__init__(self.day)
+        self.year = 2023
+        super().__init__(self.day, self.year, useFile=False)
         self.set_data(self.get_data().split("\n"))
 
         # super().__init__(self.day)

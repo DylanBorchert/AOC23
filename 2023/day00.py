@@ -3,15 +3,16 @@ from template import Template
 
 class day0(Template):
     def __init__(self):
-        self.day = 0
-        super().__init__(self.day, useFile=True)
+        self.day = 1
+        self.year = 2023
+        super().__init__(self.day, self.year, useFile=False)
         self.set_data(self.get_data().strip().split("\n"))
 
     def part1(self):
-        return self.get_data()
+        return 0
 
     def part2(self):
-        pass
+        return 0
 
 
-print(day0())
+print(day0().submit())

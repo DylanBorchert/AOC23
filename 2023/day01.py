@@ -1,6 +1,7 @@
 from functools import reduce
-from template import Template
 import re
+
+from template import Template
 
 text_to_digit = [
     "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
@@ -16,7 +17,8 @@ def extract_digits(line):
 class day1(Template):
     def __init__(self):
         self.day = 1
-        super().__init__(self.day)
+        self.year = 2023
+        super().__init__(self.day, self.year)
 
         self.set_data(self.get_data().split("\n")[:-1])
 
@@ -43,4 +45,4 @@ class day1(Template):
         return sum
 
 
-print(day1())
+day1().submit()

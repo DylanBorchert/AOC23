@@ -12,10 +12,8 @@ class day0(Template):
 
     def __init__(self):
         self.day = 8
-        # super().__init__(self.day, file_location="test.txt")
-        # self.set_data(self.get_data().split("\n\n"))
-
-        super().__init__(self.day)
+        self.year = 2023
+        super().__init__(self.day, self.year, useFile=False)
         self.set_data(self.get_data().split("\n\n"))
 
         self.instructions = self.get_data()[0].strip()

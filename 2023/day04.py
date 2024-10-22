@@ -5,7 +5,8 @@ import numpy as np
 class day0(Template):
     def __init__(self):
         self.day = 4
-        super().__init__(self.day)
+        self.year = 2023
+        super().__init__(self.day, self.year, useFile=False)
 
         self.set_data([x.split(":")[1]
                       for x in self.get_data().split("\n")[:-1]])
