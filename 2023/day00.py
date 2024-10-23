@@ -9,10 +9,10 @@ class day0(Template):
         self.set_data(self.get_data().strip().split("\n"))
 
     def part1(self):
-        return 0
+        return None
 
     def part2(self):
-        return 0
+        return None
 
 
-print(day0())
+print(day0().submit())

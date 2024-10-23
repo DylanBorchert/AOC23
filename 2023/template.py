@@ -40,6 +40,10 @@ def submit_answer(data, year, day) -> None:
 
 def submit_data(self) -> None:
     print(self)
+
+    if self.useFile:
+        print(f"{bcolors.WARNING}Switch off File to Submit!{bcolors.ENDC}\n")
+        return ''
     day1Answer = self.part1()
     day2Answer = self.part2()
     page = session.get(
@@ -49,14 +53,22 @@ def submit_data(self) -> None:
 
     match numberAnswered:
         case 0:
+            if (day1Answer == None):
+                print(
+                    f"{bcolors.BOLD}Part 1:{bcolors.ENDC}{bcolors.WARNING} ⭐️ No Answer Found!{bcolors.ENDC}\n")
+                return ''
             input(
-                f"{bcolors.BOLD}Part 1:{bcolors.ENDC} {bcolors.WARNING}Press enter to submit answer: {bcolors.OKGREEN}{day2Answer}{bcolors.ENDC} {bcolors.ENDC}")
+                f"{bcolors.BOLD}Part 1:{bcolors.ENDC} {bcolors.WARNING}Press enter to submit answer: {bcolors.OKGREEN}{day1Answer}{bcolors.ENDC} {bcolors.ENDC}")
             data = {
                 'level': '1',
                 'answer': day1Answer
             }
             submit_answer(data, self.year, self.day)
         case 1:
+            if (day2Answer == None):
+                print(
+                    f"{bcolors.BOLD}Part 2:{bcolors.ENDC}{bcolors.WARNING} ⭐️ No Answer Found!{bcolors.ENDC}\n")
+                return ''
             print(
                 f"{bcolors.OKGREEN}⭐️ Answer for Part 1 Correct!{bcolors.ENDC}\n")
 
@@ -103,6 +115,7 @@ class Template:
         """Initializes the template class"""
         self.day = day
         self.year = year
+        self.useFile = useFile
         self.link = f"https://adventofcode.com/{year}/day/{day}"
         if not useFile:
             self.__data = get_input_data(self)

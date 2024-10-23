@@ -2,11 +2,11 @@
 name = "advent-of-code"
 version = "0.1.0"
 description = ""
-authors = ["Dylan <dylanbor01@gmail.com>"]
+authors = ["Dylan Borchert <dylanbor01@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.13"
+python = "^3.12"
 python-dotenv = "^1.0.1"
 requests = "^2.32.3"
 
