@@ -20,8 +20,8 @@ class day0(Template):
 
     def part2(self):
         res = [x.split('   ') for x in self.get_data()]
-        left = sorted([int(item[0]) for item in res])
-        right = sorted([int(item[1]) for item in res])
+        left = [int(item[0]) for item in res]
+        right = [int(item[1]) for item in res]
 
         sum = 0
         for i in range(len(left)):
