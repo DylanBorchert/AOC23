@@ -25,26 +25,18 @@ class day0(Template):
         regex_do = r"do\(\)"
 
         matches = re.finditer(rf"{regex_mul}|{regex_dont}|{regex_do}", self.get_data())
-        
-        res = []
-        for match in matches:
-            if match.group(1):
-                res.append(["mul", int(match.group(1)), int(match.group(2))])
-            elif "don't()" in match.group(0):
-                res.append("don't()")
-            elif "do()" in match.group(0):
-                res.append("do()")
 
         product = 0
         allow_mul = True
-        for r in res:
-            if r == "don't()":
-                allow_mul = False
-            elif r == "do()":
-                allow_mul = True
 
-            if allow_mul and type(r) == list:
-                product += r[1] * r[2]
+        for match in matches:
+            if match.group(1):  # Matches "mul(x, y)"
+                if allow_mul:
+                    product += int(match.group(1)) * int(match.group(2))
+            elif "don't()" in match.group(0):  # Matches "don't()"
+                allow_mul = False
+            elif "do()" in match.group(0):  # Matches "do()"
+                allow_mul = True
 
         return product
 
